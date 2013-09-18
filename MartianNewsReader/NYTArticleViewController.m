@@ -7,19 +7,25 @@
 //
 
 #import "NYTArticleViewController.h"
+#import "NYTArticle.h"
+
 
 @interface NYTArticleViewController ()
 
-@property(nonatomic, strong) id article;
+@property(nonatomic, strong) NYTArticle *article;
+@property (weak, nonatomic) IBOutlet UITextView *body;
+@property (weak, nonatomic) IBOutlet UIImageView *image;
+@property (weak, nonatomic) IBOutlet UILabel *titleText;
 
 @end
 
 @implementation NYTArticleViewController
 
-- (NYTArticleViewController *)initWithArticle:(id)anArticle {
-    self = [super init];
+- (NYTArticleViewController *)initWithArticle:(NYTArticle *)anArticle {
+    self = [super initWithNibName:@"NYTArticleViewController" bundle:nil];
     if (self) {
         self.article = anArticle;
+
     }
     return self;
 }
@@ -28,4 +34,10 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+- (void) viewDidLoad
+{
+   // self.title.text = self.article.title;
+    self.body.text = self.article.body;
+    self.titleText.text = self.article.title;
+}
 @end

@@ -148,20 +148,20 @@ static NSString *const NYTArticlesFeed =
     
     parser.completionBlock = ^(void) {
         if (weakParser.articlesList) {
-            // The completion block may execute on any thread.  Because operations
-            // involving the UI are about to be performed, make sure they execute
-            // on the main thread.
             
             NYTArticleListController *nytArticleListController = (NYTArticleListController*)[(UINavigationController*)self.window.rootViewController topViewController];
-            NSLog(@"weakParser is %@", weakParser);
             NYTArticleListProvider *tempProvide = [[NYTArticleListProvider alloc] initWithArticles:weakParser.articlesList];
             
             nytArticleListController.articleListProvider = tempProvide;
             
             dispatch_async(dispatch_get_main_queue(), ^{
+                // The completion block may execute on any thread.  Because operations
+                // involving the UI are about to be performed, make sure they execute
+                // on the main thread.
                 
                 // tell our table view to reload its data, now that parsing has completed
                 [nytArticleListController.tableView reloadData];
+                
             });
         }
         

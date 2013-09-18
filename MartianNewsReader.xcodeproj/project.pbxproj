@@ -12,6 +12,8 @@
 		A21C43DF17EA43A3001115E0 /* NYTArticle.m in Sources */ = {isa = PBXBuildFile; fileRef = A21C43DD17EA43A3001115E0 /* NYTArticle.m */; };
 		A21C43E617EA4838001115E0 /* NYTParser.m in Sources */ = {isa = PBXBuildFile; fileRef = A21C43E517EA4838001115E0 /* NYTParser.m */; };
 		A21C43E717EA4838001115E0 /* NYTParser.m in Sources */ = {isa = PBXBuildFile; fileRef = A21C43E517EA4838001115E0 /* NYTParser.m */; };
+		A21C43E917EA6E4A001115E0 /* NYTArticleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A21C43E817EA6E4A001115E0 /* NYTArticleViewController.xib */; };
+		A21C43EA17EA6E4A001115E0 /* NYTArticleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A21C43E817EA6E4A001115E0 /* NYTArticleViewController.xib */; };
 		DF181A39157F9D3000126FF1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF181A38157F9D3000126FF1 /* UIKit.framework */; };
 		DF181A3B157F9D3000126FF1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF181A3A157F9D3000126FF1 /* Foundation.framework */; };
 		DF181A3D157F9D3000126FF1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF181A3C157F9D3000126FF1 /* CoreGraphics.framework */; };
@@ -45,6 +47,7 @@
 		A21C43DD17EA43A3001115E0 /* NYTArticle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NYTArticle.m; sourceTree = "<group>"; };
 		A21C43E417EA4838001115E0 /* NYTParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NYTParser.h; sourceTree = "<group>"; };
 		A21C43E517EA4838001115E0 /* NYTParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NYTParser.m; sourceTree = "<group>"; };
+		A21C43E817EA6E4A001115E0 /* NYTArticleViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NYTArticleViewController.xib; sourceTree = "<group>"; };
 		DF181A34157F9D3000126FF1 /* MartianNewsReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MartianNewsReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF181A38157F9D3000126FF1 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		DF181A3A157F9D3000126FF1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -138,6 +141,7 @@
 				A21C43DC17EA43A3001115E0 /* NYTArticle.h */,
 				A21C43DD17EA43A3001115E0 /* NYTArticle.m */,
 				DF181A76157FE6FF00126FF1 /* NYTArticleViewController.h */,
+				A21C43E817EA6E4A001115E0 /* NYTArticleViewController.xib */,
 				DF181A77157FE6FF00126FF1 /* NYTArticleViewController.m */,
 				2C0EDDE317CE6E7F007B1718 /* Default-568h@2x.png */,
 			);
@@ -246,6 +250,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DF181A43157F9D3000126FF1 /* InfoPlist.strings in Resources */,
+				A21C43E917EA6E4A001115E0 /* NYTArticleViewController.xib in Resources */,
 				2C0EDDE417CE6E7F007B1718 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -255,6 +260,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DF181A61157F9D3100126FF1 /* InfoPlist.strings in Resources */,
+				A21C43EA17EA6E4A001115E0 /* NYTArticleViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

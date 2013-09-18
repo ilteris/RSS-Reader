@@ -11,6 +11,6 @@
 
 @interface NYTArticleViewController : UIViewController
 
-- (id)initWithArticle:(id)anArticle;
+- (NYTArticleViewController *)initWithArticle:(NYTArticle *)anArticle;
 
 @end
