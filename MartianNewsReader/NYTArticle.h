@@ -14,4 +14,6 @@
 @property (nonatomic, strong) NSString *body;
 @property (nonatomic, copy) NSArray *images;
 @property (nonatomic, strong) NSString *imageURLString;
+@property (nonatomic, strong) UIImage *articleImage;
+
 @end
