@@ -21,7 +21,7 @@
 - (id)initWithStyle:(UITableViewStyle)style {
     self = [super initWithStyle:style];
     if (self) {
-        self.articleListProvider = [[NYTArticleListProvider alloc] init];
+      //  self.articleListProvider = [[NYTArticleListProvider alloc] init];
     }
     return self;
 }
@@ -37,7 +37,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.articleListProvider articleCount];
+    return 1;//[self.articleListProvider articleCount];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -50,7 +50,7 @@
     
     id article = [self.articleListProvider articleAtIndex:[indexPath row]];
 
-    [NSException raise:@"NYTNotYetImplementedException" format:@""];
+ //   [NSException raise:@"NYTNotYetImplementedException" format:@""];
     
     return cell;
 }
