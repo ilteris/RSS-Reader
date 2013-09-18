@@ -1,0 +1,473 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2C0EDDE417CE6E7F007B1718 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C0EDDE317CE6E7F007B1718 /* Default-568h@2x.png */; };
+		DF181A39157F9D3000126FF1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF181A38157F9D3000126FF1 /* UIKit.framework */; };
+		DF181A3B157F9D3000126FF1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF181A3A157F9D3000126FF1 /* Foundation.framework */; };
+		DF181A3D157F9D3000126FF1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF181A3C157F9D3000126FF1 /* CoreGraphics.framework */; };
+		DF181A43157F9D3000126FF1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DF181A41157F9D3000126FF1 /* InfoPlist.strings */; };
+		DF181A45157F9D3000126FF1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DF181A44157F9D3000126FF1 /* main.m */; };
+		DF181A49157F9D3100126FF1 /* NYTAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DF181A48157F9D3100126FF1 /* NYTAppDelegate.m */; };
+		DF181A57157F9D3100126FF1 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF181A56157F9D3100126FF1 /* SenTestingKit.framework */; };
+		DF181A58157F9D3100126FF1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF181A38157F9D3000126FF1 /* UIKit.framework */; };
+		DF181A59157F9D3100126FF1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF181A3A157F9D3000126FF1 /* Foundation.framework */; };
+		DF181A61157F9D3100126FF1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DF181A5F157F9D3100126FF1 /* InfoPlist.strings */; };
+		DF181A70157FA10600126FF1 /* NYTArticleListController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF181A6E157FA10600126FF1 /* NYTArticleListController.m */; };
+		DF181A74157FA80A00126FF1 /* NYTArticleListProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = DF181A73157FA80A00126FF1 /* NYTArticleListProvider.m */; };
+		DF181A79157FE6FF00126FF1 /* NYTArticleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF181A77157FE6FF00126FF1 /* NYTArticleViewController.m */; };
+		DF5198CF159A1D1A00C25B3E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF181A3C157F9D3000126FF1 /* CoreGraphics.framework */; };
+		DF56CCEE15867F7A0097808B /* NYTArticleListProviderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DF56CCED15867F7A0097808B /* NYTArticleListProviderTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		DF181A5A157F9D3100126FF1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DF181A2B157F9D2E00126FF1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DF181A33157F9D3000126FF1;
+			remoteInfo = MartianNewsReader;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		2C0EDDE317CE6E7F007B1718 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
+		DF181A34157F9D3000126FF1 /* MartianNewsReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MartianNewsReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DF181A38157F9D3000126FF1 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		DF181A3A157F9D3000126FF1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		DF181A3C157F9D3000126FF1 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		DF181A40157F9D3000126FF1 /* MartianNewsReader-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MartianNewsReader-Info.plist"; sourceTree = "<group>"; };
+		DF181A42157F9D3000126FF1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		DF181A44157F9D3000126FF1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		DF181A46157F9D3100126FF1 /* MartianNewsReader-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MartianNewsReader-Prefix.pch"; sourceTree = "<group>"; };
+		DF181A47157F9D3100126FF1 /* NYTAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NYTAppDelegate.h; sourceTree = "<group>"; };
+		DF181A48157F9D3100126FF1 /* NYTAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NYTAppDelegate.m; sourceTree = "<group>"; };
+		DF181A55157F9D3100126FF1 /* MartianNewsReaderTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MartianNewsReaderTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DF181A56157F9D3100126FF1 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		DF181A5E157F9D3100126FF1 /* MartianNewsReaderTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MartianNewsReaderTests-Info.plist"; sourceTree = "<group>"; };
+		DF181A60157F9D3100126FF1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		DF181A6D157FA10600126FF1 /* NYTArticleListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NYTArticleListController.h; sourceTree = "<group>"; };
+		DF181A6E157FA10600126FF1 /* NYTArticleListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NYTArticleListController.m; sourceTree = "<group>"; };
+		DF181A72157FA80A00126FF1 /* NYTArticleListProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NYTArticleListProvider.h; sourceTree = "<group>"; };
+		DF181A73157FA80A00126FF1 /* NYTArticleListProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NYTArticleListProvider.m; sourceTree = "<group>"; };
+		DF181A76157FE6FF00126FF1 /* NYTArticleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NYTArticleViewController.h; sourceTree = "<group>"; };
+		DF181A77157FE6FF00126FF1 /* NYTArticleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NYTArticleViewController.m; sourceTree = "<group>"; };
+		DF56CCED15867F7A0097808B /* NYTArticleListProviderTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NYTArticleListProviderTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		DF181A31157F9D3000126FF1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DF181A39157F9D3000126FF1 /* UIKit.framework in Frameworks */,
+				DF181A3B157F9D3000126FF1 /* Foundation.framework in Frameworks */,
+				DF181A3D157F9D3000126FF1 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DF181A51157F9D3100126FF1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DF5198CF159A1D1A00C25B3E /* CoreGraphics.framework in Frameworks */,
+				DF181A57157F9D3100126FF1 /* SenTestingKit.framework in Frameworks */,
+				DF181A58157F9D3100126FF1 /* UIKit.framework in Frameworks */,
+				DF181A59157F9D3100126FF1 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		DF181A29157F9D2E00126FF1 = {
+			isa = PBXGroup;
+			children = (
+				DF181A3E157F9D3000126FF1 /* MartianNewsReader */,
+				DF181A5C157F9D3100126FF1 /* MartianNewsReaderTests */,
+				DF181A37157F9D3000126FF1 /* Frameworks */,
+				DF181A35157F9D3000126FF1 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		DF181A35157F9D3000126FF1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DF181A34157F9D3000126FF1 /* MartianNewsReader.app */,
+				DF181A55157F9D3100126FF1 /* MartianNewsReaderTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DF181A37157F9D3000126FF1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DF181A38157F9D3000126FF1 /* UIKit.framework */,
+				DF181A3A157F9D3000126FF1 /* Foundation.framework */,
+				DF181A3C157F9D3000126FF1 /* CoreGraphics.framework */,
+				DF181A56157F9D3100126FF1 /* SenTestingKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DF181A3E157F9D3000126FF1 /* MartianNewsReader */ = {
+			isa = PBXGroup;
+			children = (
+				DF181A47157F9D3100126FF1 /* NYTAppDelegate.h */,
+				DF181A48157F9D3100126FF1 /* NYTAppDelegate.m */,
+				DF181A3F157F9D3000126FF1 /* Supporting Files */,
+				DF181A6D157FA10600126FF1 /* NYTArticleListController.h */,
+				DF181A6E157FA10600126FF1 /* NYTArticleListController.m */,
+				DF181A72157FA80A00126FF1 /* NYTArticleListProvider.h */,
+				DF181A73157FA80A00126FF1 /* NYTArticleListProvider.m */,
+				DF181A76157FE6FF00126FF1 /* NYTArticleViewController.h */,
+				DF181A77157FE6FF00126FF1 /* NYTArticleViewController.m */,
+				2C0EDDE317CE6E7F007B1718 /* Default-568h@2x.png */,
+			);
+			path = MartianNewsReader;
+			sourceTree = "<group>";
+		};
+		DF181A3F157F9D3000126FF1 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				DF181A40157F9D3000126FF1 /* MartianNewsReader-Info.plist */,
+				DF181A41157F9D3000126FF1 /* InfoPlist.strings */,
+				DF181A44157F9D3000126FF1 /* main.m */,
+				DF181A46157F9D3100126FF1 /* MartianNewsReader-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		DF181A5C157F9D3100126FF1 /* MartianNewsReaderTests */ = {
+			isa = PBXGroup;
+			children = (
+				DF181A5D157F9D3100126FF1 /* Supporting Files */,
+				DF56CCED15867F7A0097808B /* NYTArticleListProviderTests.m */,
+			);
+			path = MartianNewsReaderTests;
+			sourceTree = "<group>";
+		};
+		DF181A5D157F9D3100126FF1 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				DF181A5E157F9D3100126FF1 /* MartianNewsReaderTests-Info.plist */,
+				DF181A5F157F9D3100126FF1 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		DF181A33157F9D3000126FF1 /* MartianNewsReader */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DF181A67157F9D3100126FF1 /* Build configuration list for PBXNativeTarget "MartianNewsReader" */;
+			buildPhases = (
+				DF181A30157F9D3000126FF1 /* Sources */,
+				DF181A31157F9D3000126FF1 /* Frameworks */,
+				DF181A32157F9D3000126FF1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MartianNewsReader;
+			productName = MartianNewsReader;
+			productReference = DF181A34157F9D3000126FF1 /* MartianNewsReader.app */;
+			productType = "com.apple.product-type.application";
+		};
+		DF181A54157F9D3100126FF1 /* MartianNewsReaderTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DF181A6A157F9D3100126FF1 /* Build configuration list for PBXNativeTarget "MartianNewsReaderTests" */;
+			buildPhases = (
+				DF181A50157F9D3100126FF1 /* Sources */,
+				DF181A51157F9D3100126FF1 /* Frameworks */,
+				DF181A52157F9D3100126FF1 /* Resources */,
+				DF181A53157F9D3100126FF1 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DF181A5B157F9D3100126FF1 /* PBXTargetDependency */,
+			);
+			name = MartianNewsReaderTests;
+			productName = MartianNewsReaderTests;
+			productReference = DF181A55157F9D3100126FF1 /* MartianNewsReaderTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		DF181A2B157F9D2E00126FF1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = NYT;
+				LastUpgradeCheck = 0500;
+				ORGANIZATIONNAME = "The New York Times Company";
+			};
+			buildConfigurationList = DF181A2E157F9D2E00126FF1 /* Build configuration list for PBXProject "MartianNewsReader" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = DF181A29157F9D2E00126FF1;
+			productRefGroup = DF181A35157F9D3000126FF1 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				DF181A33157F9D3000126FF1 /* MartianNewsReader */,
+				DF181A54157F9D3100126FF1 /* MartianNewsReaderTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		DF181A32157F9D3000126FF1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DF181A43157F9D3000126FF1 /* InfoPlist.strings in Resources */,
+				2C0EDDE417CE6E7F007B1718 /* Default-568h@2x.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DF181A52157F9D3100126FF1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DF181A61157F9D3100126FF1 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		DF181A53157F9D3100126FF1 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		DF181A30157F9D3000126FF1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DF181A45157F9D3000126FF1 /* main.m in Sources */,
+				DF181A49157F9D3100126FF1 /* NYTAppDelegate.m in Sources */,
+				DF181A70157FA10600126FF1 /* NYTArticleListController.m in Sources */,
+				DF181A74157FA80A00126FF1 /* NYTArticleListProvider.m in Sources */,
+				DF181A79157FE6FF00126FF1 /* NYTArticleViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DF181A50157F9D3100126FF1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DF56CCEE15867F7A0097808B /* NYTArticleListProviderTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		DF181A5B157F9D3100126FF1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DF181A33157F9D3000126FF1 /* MartianNewsReader */;
+			targetProxy = DF181A5A157F9D3100126FF1 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		DF181A41157F9D3000126FF1 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DF181A42157F9D3000126FF1 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		DF181A5F157F9D3100126FF1 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DF181A60157F9D3100126FF1 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		DF181A65157F9D3100126FF1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		DF181A66157F9D3100126FF1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		DF181A68157F9D3100126FF1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MartianNewsReader/MartianNewsReader-Prefix.pch";
+				INFOPLIST_FILE = "MartianNewsReader/MartianNewsReader-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		DF181A69157F9D3100126FF1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MartianNewsReader/MartianNewsReader-Prefix.pch";
+				INFOPLIST_FILE = "MartianNewsReader/MartianNewsReader-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		DF181A6B157F9D3100126FF1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/MartianNewsReader.app/MartianNewsReader";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MartianNewsReader/MartianNewsReader-Prefix.pch";
+				INFOPLIST_FILE = "MartianNewsReaderTests/MartianNewsReaderTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		DF181A6C157F9D3100126FF1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/MartianNewsReader.app/MartianNewsReader";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MartianNewsReader/MartianNewsReader-Prefix.pch";
+				INFOPLIST_FILE = "MartianNewsReaderTests/MartianNewsReaderTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		DF181A2E157F9D2E00126FF1 /* Build configuration list for PBXProject "MartianNewsReader" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DF181A65157F9D3100126FF1 /* Debug */,
+				DF181A66157F9D3100126FF1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DF181A67157F9D3100126FF1 /* Build configuration list for PBXNativeTarget "MartianNewsReader" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DF181A68157F9D3100126FF1 /* Debug */,
+				DF181A69157F9D3100126FF1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DF181A6A157F9D3100126FF1 /* Build configuration list for PBXNativeTarget "MartianNewsReaderTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DF181A6B157F9D3100126FF1 /* Debug */,
+				DF181A6C157F9D3100126FF1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = DF181A2B157F9D2E00126FF1 /* Project object */;
+}
