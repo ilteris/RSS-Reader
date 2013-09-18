@@ -9,10 +9,11 @@
 #import "NYTArticleListController.h"
 #import "NYTArticleListProvider.h"
 #import "NYTArticleViewController.h"
+#import "NYTArticle.h"
+
 
 @interface NYTArticleListController ()
 
-@property (nonatomic, strong) NYTArticleListProvider *articleListProvider;
 
 @end
 
@@ -21,7 +22,7 @@
 - (id)initWithStyle:(UITableViewStyle)style {
     self = [super initWithStyle:style];
     if (self) {
-      //  self.articleListProvider = [[NYTArticleListProvider alloc] init];
+        self.articleListProvider = [[NYTArticleListProvider alloc] init];
     }
     return self;
 }
@@ -37,7 +38,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 1;//[self.articleListProvider articleCount];
+    return [self.articleListProvider articleCount];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -48,8 +49,13 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-    id article = [self.articleListProvider articleAtIndex:[indexPath row]];
+    NYTArticle  *article = [self.articleListProvider articleAtIndex:[indexPath row]];
 
+   
+    
+    cell.textLabel.text = [[self.articleListProvider articleAtIndex:[indexPath row]] valueForKey:@"title"];//article.title;
+   // cell.detailTextLabel.text = appRecord.artist;
+    
  //   [NSException raise:@"NYTNotYetImplementedException" format:@""];
     
     return cell;

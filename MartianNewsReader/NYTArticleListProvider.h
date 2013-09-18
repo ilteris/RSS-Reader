@@ -8,12 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
+@class NYTArticle;
+
 @interface NYTArticleListProvider : NSObject
+@property (nonatomic, copy) NSArray *articles;
 
 // For testing
 - (id)initWithArticles:(NSArray *)someArticles;
 
 - (NSInteger)articleCount;
-- (id)articleAtIndex:(NSInteger)index;
+- (NYTArticle *) articleAtIndex:(NSInteger)index;
 
 @end

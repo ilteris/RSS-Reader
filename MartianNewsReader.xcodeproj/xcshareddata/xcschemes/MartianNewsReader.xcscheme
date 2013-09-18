@@ -37,6 +37,11 @@
                BlueprintName = "MartianNewsReaderTests"
                ReferencedContainer = "container:MartianNewsReader.xcodeproj">
             </BuildableReference>
+            <SkippedTests>
+               <Test
+                  Identifier = "NYTArticleListProviderTests">
+               </Test>
+            </SkippedTests>
          </TestableReference>
       </Testables>
       <MacroExpansion>

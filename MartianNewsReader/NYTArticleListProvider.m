@@ -7,22 +7,23 @@
 //
 
 #import "NYTArticleListProvider.h"
-
+#import "NYTArticle.h"
 
 @implementation NYTArticleListProvider
 
 - (id)initWithArticles:(NSArray *)someArticles {
-    [NSException raise:@"NYTNotYetImplementedException" format:@""];
-    return nil;
+    if (self = [super init])
+    {
+      self.articles = someArticles;
+    }
+    return self;
 }
 
 - (NSInteger)articleCount {
-    [NSException raise:@"NYTNotYetImplementedException" format:@""];
-    return NSNotFound;
+    return [self.articles count];
 }
 
-- (id)articleAtIndex:(NSInteger)index {
-    [NSException raise:@"NYTNotYetImplementedException" format:@""];
-    return nil;
+- (NYTArticle *) articleAtIndex:(NSInteger)index {
+    return self.articles[index];
 }
 @end
