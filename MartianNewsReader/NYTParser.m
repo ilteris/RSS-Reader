@@ -49,7 +49,6 @@
     for (NSDictionary *articleDict in temp) {
         NYTArticle *article = [[NYTArticle alloc] init];
         article.title = [articleDict valueForKey:@"title"];
-        article.titleMartian = [[articleDict valueForKey:@"title"] convertToMartian:[articleDict valueForKey:@"title"]];
         article.body = [articleDict valueForKey:@"body"];
         article.images = [NSArray arrayWithArray:[articleDict valueForKey:@"images"]];
         article.imageURLString = [article.images[0] valueForKey:@"url"];

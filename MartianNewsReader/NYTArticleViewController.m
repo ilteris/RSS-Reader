@@ -71,11 +71,9 @@
     //index is coming from segmentedcontrol
     switch (index) {
         case 0:
-            NSLog(@"english");
             [self convertToEnglish];
             break;
         case 1:
-            NSLog(@"martian");
             self.body.text =  [self.article.body convertToMartian:self.article.body];
             self.titleText.text = [self.article.body convertToMartian:self.article.title];
             

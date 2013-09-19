@@ -44,11 +44,13 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
     if(!defaults) {
-        NSLog(@"ere");
-        self.segmentedControl.selectedSegmentIndex = 0;
-        [defaults setInteger:0 forKey:@"language"]; //0 english 1 martian
+       // self.segmentedControl.selectedSegmentIndex = 0;
+       // [defaults setInteger:0 forKey:@"language"]; //0 english 1 martian
     } else {
+        NSLog(@"here is self.segmentedControl.selectedSegmentIndex %i", self.segmentedControl.selectedSegmentIndex);
         self.segmentedControl.selectedSegmentIndex = [defaults integerForKey:@"language"];
+        NSLog(@"here is self.segmentedControl.selectedSegmentIndex %i", self.segmentedControl.selectedSegmentIndex);
+
     }
     self.navigationController.toolbarHidden = NO;
     
@@ -65,27 +67,33 @@
 }
 
 -(void) segmentedControlIndexChanged {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
-    NSString *notificationName = @"NYTSegmentedControlNotification";
-    NSDictionary *dictionary = [NSDictionary dictionaryWithObject:[NSNumber numberWithInt:self.segmentedControl.selectedSegmentIndex] forKey:@"index"];
-    [[NSNotificationCenter defaultCenter] postNotificationName:notificationName object:nil userInfo:dictionary];
     
     switch (self.segmentedControl.selectedSegmentIndex) {
         case 0:
-            NSLog(@"english in the articlelist");
-            [defaults setInteger:0 forKey:@"language"]; //0 english 1 martian
-            
+            NSLog(@"english self.segmentedControl.selectedSegmentIndex is %i", self.segmentedControl.selectedSegmentIndex);
+            [[NSUserDefaults standardUserDefaults] setInteger:0 forKey:@"language"]; //0 english 1 martian
+            [[NSUserDefaults standardUserDefaults] synchronize];
             break;
         case 1:
-            NSLog(@"martin in the articlelist");
-            [defaults setInteger:1 forKey:@"language"]; //0 english 1 martian
-            
+            NSLog(@"martin self.segmentedControl.selectedSegmentIndex is %i", self.segmentedControl.selectedSegmentIndex);
+            [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"language"]; //0 english 1 martian
+            [[NSUserDefaults standardUserDefaults] synchronize];
+
             break;
             
         default:
             break;
     }
+    
+    //post notification we choose notifications because we don't care who the receiver is. we broadcast and don't worry about the rest.
+    
+    NSString *notificationName = @"NYTSegmentedControlNotification";
+    NSDictionary *dictionary = [NSDictionary dictionaryWithObject:[NSNumber numberWithInt:self.segmentedControl.selectedSegmentIndex] forKey:@"index"];
+    [[NSNotificationCenter defaultCenter] postNotificationName:notificationName object:nil userInfo:dictionary];
+  
+    
+    [self.tableView reloadData];
     
 }
 
@@ -114,8 +122,7 @@
     
     NYTArticle  *article = [self.articleListProvider articleAtIndex:[indexPath row]];
     
-    NSLog(@"self.segmentedControl.selectedSegmentIndex is %i", self.segmentedControl.selectedSegmentIndex);
-    (!self.segmentedControl.selectedSegmentIndex) ? [cell.titleLabel setText:article.title] : [cell.titleLabel setText:article.titleMartian];
+    (!self.segmentedControl.selectedSegmentIndex) ? [cell.titleLabel setText:article.title] : [cell.titleLabel setText:[article.title convertToMartian:article.title]];
     
     if(!article.articleImage)
     {
@@ -155,7 +162,7 @@
             // Display the newly loaded image
             cell.cellImageView.image = article.articleImage;
             
-            // Remove the IconDownloader from the in progress list.
+            // Remove the imageDownloader from the in progress list.
             // This will result in it being deallocated.
             [self.imageDownloadsInProgress removeObjectForKey:indexPath];
             

@@ -147,9 +147,6 @@
 				DF181A47157F9D3100126FF1 /* NYTAppDelegate.h */,
 				DF181A48157F9D3100126FF1 /* NYTAppDelegate.m */,
 				DF181A3F157F9D3000126FF1 /* Supporting Files */,
-				A21C43EF17EA799D001115E0 /* LazyTableCell.xib */,
-				A21C43F217EA7AF4001115E0 /* NYTLazyTableViewCell.h */,
-				A21C43F317EA7AF4001115E0 /* NYTLazyTableViewCell.m */,
 				DF181A72157FA80A00126FF1 /* NYTArticleListProvider.h */,
 				DF181A73157FA80A00126FF1 /* NYTArticleListProvider.m */,
 				A21C43E417EA4838001115E0 /* NYTParser.h */,
@@ -165,6 +162,9 @@
 				A21C43E817EA6E4A001115E0 /* NYTArticleViewController.xib */,
 				DF181A6D157FA10600126FF1 /* NYTArticleListController.h */,
 				DF181A6E157FA10600126FF1 /* NYTArticleListController.m */,
+				A21C43EF17EA799D001115E0 /* LazyTableCell.xib */,
+				A21C43F217EA7AF4001115E0 /* NYTLazyTableViewCell.h */,
+				A21C43F317EA7AF4001115E0 /* NYTLazyTableViewCell.m */,
 				2C0EDDE317CE6E7F007B1718 /* Default-568h@2x.png */,
 			);
 			path = MartianNewsReader;
