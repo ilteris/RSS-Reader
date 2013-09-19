@@ -8,6 +8,8 @@
 
 #import <SenTestingKit/SenTestingKit.h>
 #import "NYTArticleListProvider.h"
+#import "NYTArticle.h"
+
 
 @interface NYTArticleListProviderTests : SenTestCase
 
@@ -35,11 +37,10 @@
 }
 
 - (void)assertArticle:(id)article hasMartianTitleText:(NSString *)expectedText {
-    [NSException raise:@"NYTNotYetImplementedException" format:@""];
+
 }
 
 - (void)assertArticle:(id)article hasMartianBodyText:(NSString *)expectedText {
-    [NSException raise:@"NYTNotYetImplementedException" format:@""];
 }
 
 

@@ -50,6 +50,8 @@
     }
     self.segmentedControl.selectedSegmentIndex = self.article.language;
     
+    NSLog(@"%@", self.article.body);
+    
 }
 
 
@@ -88,7 +90,7 @@
     
     // Regular expression to find all words greater than 3 characters
     NSRegularExpression *regex;
-    regex = [NSRegularExpression regularExpressionWithPattern:@"([\\w']{4,})"
+    regex = [NSRegularExpression regularExpressionWithPattern:@"([\\w[’']]{4,})"
                                                       options:0
                                                         error:NULL];
     
@@ -101,7 +103,7 @@
         range.location += offset;
         // Get old word:
         NSString *oldWord = [modifiedString substringWithRange:range];
-       // NSLog(@"%@", oldWord);
+        NSLog(@"%@", oldWord);
         //check if word's first letter is capitalized
         BOOL isUppercase = [[NSCharacterSet uppercaseLetterCharacterSet] characterIsMember:[oldWord characterAtIndex:0]];
         NSString *newWord;

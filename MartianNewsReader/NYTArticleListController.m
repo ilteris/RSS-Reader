@@ -25,7 +25,7 @@
 - (id)initWithStyle:(UITableViewStyle)style {
     self = [super initWithStyle:style];
     if (self) {
-        self.articleListProvider = [[NYTArticleListProvider alloc] init];
+       self.articleListProvider = [[NYTArticleListProvider alloc] init];
     }
     return self;
 }
@@ -33,6 +33,7 @@
 
 - (void) viewDidLoad
 {
+    //register our custom tableview cell
     [self.tableView registerNib:[UINib nibWithNibName:@"LazyTableCell"
                                                bundle:[NSBundle mainBundle]]
          forCellReuseIdentifier:@"LazyTableCell"];
