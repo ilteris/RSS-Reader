@@ -15,5 +15,6 @@
 @property (nonatomic, copy) NSArray *images;
 @property (nonatomic, strong) NSString *imageURLString;
 @property (nonatomic, strong) UIImage *articleImage;
+@property (nonatomic, assign) NSUInteger language; //0 english 1 martian
 
 @end

@@ -42,8 +42,14 @@
     self.titleText.text = self.article.title;
     self.imageView.image = self.article.articleImage;
     
-    NSLog(@"%@", self.article.body);
-
+    if(!self.article.language) {
+        [self convertToEnglish];
+    } else {
+        self.body.text =  [self convertToMartian:self.article.body];
+        self.titleText.text = [self convertToMartian:self.article.title];
+    }
+    self.segmentedControl.selectedSegmentIndex = self.article.language;
+    
 }
 
 
@@ -55,7 +61,9 @@
             break;
         case 1:
             NSLog(@"martian");
-            [self convertToMartian];
+            self.body.text =  [self convertToMartian:self.article.body];
+            self.titleText.text = [self convertToMartian:self.article.title];
+
             break;
             
         default:
@@ -67,27 +75,33 @@
 - (void) convertToEnglish
 {
     self.body.text = self.article.body;
+    self.titleText.text = self.article.title;
+    self.article.language = 0;
 
 }
-- (void) convertToMartian
+- (NSString *) convertToMartian:(NSString *)aString
 {
+    self.article.language = 1;
+
     
-    NSString *currentString = self.article.body;
+    NSString *currentString = aString;
     
     // Regular expression to find all words greater than 3 characters
     NSRegularExpression *regex;
-    regex = [NSRegularExpression regularExpressionWithPattern:@"([\\w\']{4,})"
+    regex = [NSRegularExpression regularExpressionWithPattern:@"([\\w']{4,})"
                                                       options:0
                                                         error:NULL];
     
     NSMutableString *modifiedString = [currentString mutableCopy];
     __block int offset = 0;
     [regex enumerateMatchesInString:currentString options:0 range:NSMakeRange(0, [currentString length]) usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop) {
-        NSRange range = [result rangeAtIndex:1];
+        NSRange range = [result rangeAtIndex:0];
+       // NSLog(@"range is %@", NSStringFromRange(range));
         // Adjust location for modifiedString:
         range.location += offset;
         // Get old word:
         NSString *oldWord = [modifiedString substringWithRange:range];
+       // NSLog(@"%@", oldWord);
         //check if word's first letter is capitalized
         BOOL isUppercase = [[NSCharacterSet uppercaseLetterCharacterSet] characterIsMember:[oldWord characterAtIndex:0]];
         NSString *newWord;
@@ -106,6 +120,6 @@
     }
      ];
     
-    self.body.text = modifiedString;
+    return modifiedString;
 }
 @end
