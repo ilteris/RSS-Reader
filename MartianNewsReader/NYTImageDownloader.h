@@ -8,6 +8,16 @@
 
 #import <Foundation/Foundation.h>
 
+
+@class NYTArticle;
+
 @interface NYTImageDownloader : NSObject
+@property (nonatomic, strong) NYTArticle *article;
+@property (nonatomic, copy) void (^completionHandler)(void);
+
+
+- (void)startDownload;
+- (void)cancelDownload;
+
 
 @end
