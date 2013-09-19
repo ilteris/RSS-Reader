@@ -154,11 +154,11 @@
 				A21C43EB17EA7509001115E0 /* NYTImageDownloader.h */,
 				A21C43EC17EA7509001115E0 /* NYTImageDownloader.m */,
 				A21C43DD17EA43A3001115E0 /* NYTArticle.m */,
+				DF181A76157FE6FF00126FF1 /* NYTArticleViewController.h */,
+				DF181A77157FE6FF00126FF1 /* NYTArticleViewController.m */,
+				A21C43E817EA6E4A001115E0 /* NYTArticleViewController.xib */,
 				DF181A6D157FA10600126FF1 /* NYTArticleListController.h */,
 				DF181A6E157FA10600126FF1 /* NYTArticleListController.m */,
-				DF181A76157FE6FF00126FF1 /* NYTArticleViewController.h */,
-				A21C43E817EA6E4A001115E0 /* NYTArticleViewController.xib */,
-				DF181A77157FE6FF00126FF1 /* NYTArticleViewController.m */,
 				2C0EDDE317CE6E7F007B1718 /* Default-568h@2x.png */,
 			);
 			path = MartianNewsReader;
