@@ -16,7 +16,7 @@
 @property (weak, nonatomic) IBOutlet UITextView *body;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UILabel *titleText;
-@property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
+@property (nonatomic, strong) UISegmentedControl *segmentedControl;
 
 @end
 
@@ -24,6 +24,7 @@
 
 - (NYTArticleViewController *)initWithArticle:(NYTArticle *)anArticle {
     self = [super initWithNibName:@"NYTArticleViewController" bundle:nil];
+    //change of code so I can use nib file
     if (self) {
         self.article = anArticle;
 
@@ -35,37 +36,47 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
-- (void) viewDidLoad
+- (void)viewDidLoad
 {
    // self.title.text = self.article.title;
     self.body.text = self.article.body;
     self.titleText.text = self.article.title;
     self.imageView.image = self.article.articleImage;
     
-    if(!self.article.language) {
+    NSArray *itemArray = [NSArray arrayWithObjects: @"English", @"Martian", nil];
+    self.segmentedControl = [[UISegmentedControl alloc] initWithItems:itemArray];
+    self.segmentedControl.frame = CGRectMake(70, 5, 180, 30);
+    self.segmentedControl.segmentedControlStyle = UISegmentedControlStylePlain;
+    
+    
+    //[self.navigationController.navigationBar addSubview:self.segmentedControl];
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];    
+    
+    if(![defaults integerForKey:@"language"]) {
         [self convertToEnglish];
     } else {
         self.body.text =  [self convertToMartian:self.article.body];
         self.titleText.text = [self convertToMartian:self.article.title];
     }
-    self.segmentedControl.selectedSegmentIndex = self.article.language;
-    
-    NSLog(@"%@", self.article.body);
-    
 }
 
 
--(IBAction) segmentedControlIndexChanged{
+-(void) segmentedControlIndexChanged {
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     switch (self.segmentedControl.selectedSegmentIndex) {
         case 0:
             NSLog(@"english");
+            [defaults setInteger:0 forKey:@"language"]; //0 english 1 martian
             [self convertToEnglish];
             break;
         case 1:
             NSLog(@"martian");
+            [defaults setInteger:1 forKey:@"language"]; //0 english 1 martian
             self.body.text =  [self convertToMartian:self.article.body];
             self.titleText.text = [self convertToMartian:self.article.title];
-
+            
             break;
             
         default:
@@ -74,18 +85,22 @@
     
 }
 
-- (void) convertToEnglish
+
+
+
+
+
+- (void)convertToEnglish
 {
     self.body.text = self.article.body;
     self.titleText.text = self.article.title;
-    self.article.language = 0;
 
 }
-- (NSString *) convertToMartian:(NSString *)aString
-{
-    self.article.language = 1;
 
-    
+
+- (NSString *)convertToMartian:(NSString *)aString
+{
+
     NSString *currentString = aString;
     
     // Regular expression to find all words greater than 3 characters

@@ -52,7 +52,6 @@
         article.body = [articleDict valueForKey:@"body"];
         article.images = [NSArray arrayWithArray:[articleDict valueForKey:@"images"]];
         article.imageURLString = [article.images[0] valueForKey:@"url"];
-        article.language = 0;
         [self.workingArray addObject:article];
     }
     

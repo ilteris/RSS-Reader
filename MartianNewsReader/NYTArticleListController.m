@@ -17,6 +17,7 @@
 @interface NYTArticleListController ()
 
 @property (nonatomic, strong) NSMutableDictionary *imageDownloadsInProgress;
+@property (nonatomic, strong) UISegmentedControl *segmentedControl;
 
 @end
 
@@ -33,14 +34,58 @@
 
 - (void) viewDidLoad
 {
+    //add segmented control programmatically
+    NSArray *itemArray = [NSArray arrayWithObjects: @"English", @"Martian", nil];
+    self.segmentedControl = [[UISegmentedControl alloc] initWithItems:itemArray];
+    self.segmentedControl.frame = CGRectMake(70, 10, 180, 25);
+    self.segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
+    
+    //set nsdefaults for persistance
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+
+    if(!defaults) {
+        self.segmentedControl.selectedSegmentIndex = 0;
+        [defaults setInteger:0 forKey:@"language"]; //0 english 1 martian
+    } else {
+        self.segmentedControl.selectedSegmentIndex = [defaults integerForKey:@"language"];
+    }
+    self.navigationController.toolbarHidden = NO;
+
+    [self.segmentedControl addTarget:self action:@selector(segmentedControlIndexChanged) forControlEvents:UIControlEventValueChanged];
+
+    [self.navigationController.toolbar addSubview:self.segmentedControl];
+    
+    [self.navigationController.navigationBar.topItem setTitle:@"Martian Times"];
+    
     //register our custom tableview cell
     [self.tableView registerNib:[UINib nibWithNibName:@"LazyTableCell"
                                                bundle:[NSBundle mainBundle]]
          forCellReuseIdentifier:@"LazyTableCell"];
-    
-    [self.navigationController.navigationBar.topItem setTitle:@"Martian Times"];
+}
+
+-(void) segmentedControlIndexChanged {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+
+    switch (self.segmentedControl.selectedSegmentIndex) {
+        case 0:
+            NSLog(@"english in the articlelist");
+            [defaults setInteger:0 forKey:@"language"]; //0 english 1 martian
+
+            break;
+        case 1:
+            NSLog(@"martin in the articlelist");
+            [defaults setInteger:1 forKey:@"language"]; //0 english 1 martian
+
+            break;
+            
+        default:
+            break;
+    }
     
 }
+
+
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
@@ -70,16 +115,12 @@
     
     if(!article.articleImage)
     {
-        [self startIconDownload:article forIndexPath:indexPath];
-
+        [self startImageDownload:article forIndexPath:indexPath];
     }
     else
     {
-       // cell.imageView.image = article.articleImage;
+       cell.cellImageView.image = article.articleImage;
     }
-    
-    
-    
     return cell;
 }
 
@@ -96,14 +137,14 @@
 
 #pragma mark - Table cell image support
 
-- (void)startIconDownload:(NYTArticle *)article forIndexPath:(NSIndexPath *)indexPath
+- (void)startImageDownload:(NYTArticle *)article forIndexPath:(NSIndexPath *)indexPath
 {
-    NYTImageDownloader *iconDownloader = [self.imageDownloadsInProgress objectForKey:indexPath];
-    if (iconDownloader == nil)
+    NYTImageDownloader *imageDownloader = [self.imageDownloadsInProgress objectForKey:indexPath];
+    if (imageDownloader == nil)
     {
-        iconDownloader = [[NYTImageDownloader alloc] init];
-        iconDownloader.article = article;
-        [iconDownloader setCompletionHandler:^{
+        imageDownloader = [[NYTImageDownloader alloc] init];
+        imageDownloader.article = article;
+        [imageDownloader setCompletionHandler:^{
             
             NYTLazyTableViewCell *cell = (NYTLazyTableViewCell *)[self.tableView cellForRowAtIndexPath:indexPath];
             
@@ -115,8 +156,8 @@
             [self.imageDownloadsInProgress removeObjectForKey:indexPath];
             
         }];
-        [self.imageDownloadsInProgress setObject:iconDownloader forKey:indexPath];
-        [iconDownloader startDownload];
+        [self.imageDownloadsInProgress setObject:imageDownloader forKey:indexPath];
+        [imageDownloader startDownload];
     }
 }
 

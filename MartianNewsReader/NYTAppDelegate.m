@@ -37,8 +37,7 @@ static NSString *const NYTArticlesFeed =
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
-    self.viewController = [[UINavigationController alloc] initWithRootViewController:[
-                                                                                      [NYTArticleListController alloc] initWithStyle:UITableViewStylePlain]];
+    self.viewController = [[UINavigationController alloc] initWithRootViewController:[[NYTArticleListController alloc] initWithStyle:UITableViewStylePlain]];
     self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
     
