@@ -23,6 +23,7 @@
 		A2B97DDF17EB5246000D8C47 /* NSString+Translation.m in Sources */ = {isa = PBXBuildFile; fileRef = A2B97DDE17EB5246000D8C47 /* NSString+Translation.m */; };
 		A2B97DE017EB5246000D8C47 /* NSString+Translation.m in Sources */ = {isa = PBXBuildFile; fileRef = A2B97DDE17EB5246000D8C47 /* NSString+Translation.m */; };
 		A2F894A217EB974800364A22 /* NYTArticleViewController_ip4.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2F894A117EB974800364A22 /* NYTArticleViewController_ip4.xib */; };
+		A2F894A317EBAFC200364A22 /* NYTArticleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF181A77157FE6FF00126FF1 /* NYTArticleViewController.m */; };
 		DF181A39157F9D3000126FF1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF181A38157F9D3000126FF1 /* UIKit.framework */; };
 		DF181A3B157F9D3000126FF1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF181A3A157F9D3000126FF1 /* Foundation.framework */; };
 		DF181A3D157F9D3000126FF1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF181A3C157F9D3000126FF1 /* CoreGraphics.framework */; };
@@ -146,21 +147,21 @@
 		DF181A3E157F9D3000126FF1 /* MartianNewsReader */ = {
 			isa = PBXGroup;
 			children = (
+				A2B97DDD17EB5246000D8C47 /* NSString+Translation.h */,
+				A2B97DDE17EB5246000D8C47 /* NSString+Translation.m */,
 				DF181A47157F9D3100126FF1 /* NYTAppDelegate.h */,
 				DF181A48157F9D3100126FF1 /* NYTAppDelegate.m */,
 				DF181A3F157F9D3000126FF1 /* Supporting Files */,
+				A21C43DC17EA43A3001115E0 /* NYTArticle.h */,
+				A21C43DD17EA43A3001115E0 /* NYTArticle.m */,
 				DF181A72157FA80A00126FF1 /* NYTArticleListProvider.h */,
 				DF181A73157FA80A00126FF1 /* NYTArticleListProvider.m */,
 				A21C43E417EA4838001115E0 /* NYTParser.h */,
 				A21C43E517EA4838001115E0 /* NYTParser.m */,
-				A21C43DC17EA43A3001115E0 /* NYTArticle.h */,
-				A21C43DD17EA43A3001115E0 /* NYTArticle.m */,
 				A21C43EB17EA7509001115E0 /* NYTImageDownloader.h */,
 				A21C43EC17EA7509001115E0 /* NYTImageDownloader.m */,
 				DF181A76157FE6FF00126FF1 /* NYTArticleViewController.h */,
 				DF181A77157FE6FF00126FF1 /* NYTArticleViewController.m */,
-				A2B97DDD17EB5246000D8C47 /* NSString+Translation.h */,
-				A2B97DDE17EB5246000D8C47 /* NSString+Translation.m */,
 				A21C43E817EA6E4A001115E0 /* NYTArticleViewController_ip5.xib */,
 				A2F894A117EB974800364A22 /* NYTArticleViewController_ip4.xib */,
 				DF181A6D157FA10600126FF1 /* NYTArticleListController.h */,
@@ -338,6 +339,7 @@
 				A21C43DF17EA43A3001115E0 /* NYTArticle.m in Sources */,
 				DF56CCEE15867F7A0097808B /* NYTArticleListProviderTests.m in Sources */,
 				A2B97DE017EB5246000D8C47 /* NSString+Translation.m in Sources */,
+				A2F894A317EBAFC200364A22 /* NYTArticleViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

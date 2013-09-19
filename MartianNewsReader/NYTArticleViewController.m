@@ -41,7 +41,9 @@
     //layout code outside of my classes. I prefer IB to programmatically creating layouts
     // since I find it faster.
     
-    //I prefer to use separate nibs for separate iphones since I don't trust autolayout in IB yet and it's also cleaner in my humble opinion.
+    //I prefer to use separate nibs for separate iphones here since I don't trust
+   // autolayout in IB just yet and it's also cleaner to separate views in my humble opinion.
+    // I am completely flexible to do everything programmatically if required.
     
     if (self) {
         self.article = anArticle;
@@ -60,7 +62,7 @@
     self.titleText.text = self.article.title;
     self.imageView.image = self.article.articleImage;
     
-    //initial load, get the value from the nsdefaults and apply the language
+    //initial load, get the value from the persisted nsdefaults and apply the translation.
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];    
     
     if(![defaults integerForKey:@"language"]) {
@@ -106,9 +108,6 @@
     self.body.text = self.article.body;
     self.titleText.text = self.article.title;
 }
-
-
-
 
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];

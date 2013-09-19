@@ -9,7 +9,6 @@
 #import "NYTImageDownloader.h"
 #import "NYTArticle.h"
 
-#define kAppIconSize 48
 
 @interface NYTImageDownloader ()
 @property (nonatomic, strong) NSMutableData *activeDownload;
@@ -27,7 +26,6 @@
     
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:self.article.imageURLString]];
     
-    // alloc+init and start an NSURLConnection; release on completion/failure
     NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
     
     self.imageConnection = conn;
@@ -61,26 +59,15 @@
     // Set  and clear temporary data/image
     UIImage *image = [[UIImage alloc] initWithData:self.activeDownload];
     
-    if (image.size.width != kAppIconSize || image.size.height != kAppIconSize)
-	{
-        CGSize itemSize = CGSizeMake(kAppIconSize, kAppIconSize);
-		UIGraphicsBeginImageContextWithOptions(itemSize, NO, 0.0f);
-		CGRect imageRect = CGRectMake(0.0, 0.0, itemSize.width, itemSize.height);
-		[image drawInRect:imageRect];
-		self.article.articleImage = image;//UIGraphicsGetImageFromCurrentImageContext();
-		UIGraphicsEndImageContext();
-    }
-    else
-    {
-        self.article.articleImage = image;
-    }
+    self.article.articleImage = image;
+
     
     self.activeDownload = nil;
     
     // Release the connection now that it's finished
     self.imageConnection = nil;
     
-    // call our delegate and tell it that our icon is ready for display
+    // call our delegate and tell it that our image is ready for display
     if (self.completionHandler)
         self.completionHandler();
 }

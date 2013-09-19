@@ -15,7 +15,6 @@
 
 // For testing
 - (id)initWithArticles:(NSArray *)someArticles;
-
 - (NSInteger)articleCount;
 - (NYTArticle *) articleAtIndex:(NSInteger)index;
 

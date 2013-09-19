@@ -9,11 +9,11 @@
 #import "NYTAppDelegate.h"
 
 #import "NYTArticleListController.h"
+#import "NYTParser.h"
+#import "NYTArticleListProvider.h"
 
 // This framework was imported so we could use the kCFURLErrorNotConnectedToInternet error code.
 #import <CFNetwork/CFNetwork.h>
-#import "NYTParser.h"
-#import "NYTArticleListProvider.h"
 
 
 static NSString *const NYTArticlesFeed =
@@ -23,7 +23,6 @@ static NSString *const NYTArticlesFeed =
 // the queue to run our "ParseOperation"
 @property (nonatomic, strong) NSOperationQueue *queue;
 
-//network connection to the AWS
 @property (nonatomic, strong) NSURLConnection *articlesListFeedConnection;
 @property (nonatomic, strong) NSMutableData *articlesListData;
 @end
@@ -71,10 +70,7 @@ static NSString *const NYTArticlesFeed =
     [alertView show];
 }
 
-// The following are delegate methods for NSURLConnection. Similar to callback functions, this is how
-// the connection object,  which is working in the background, can asynchronously communicate back to
-// its delegate on the thread from which it was started - in this case, the main thread.
-//
+
 #pragma mark - NSURLConnectionDelegate methods
 
 // -------------------------------------------------------------------------------
@@ -149,7 +145,8 @@ static NSString *const NYTArticlesFeed =
     parser.completionBlock = ^(void) {
         if (weakParser.articlesList) {
             
-            NYTArticleListController *nytArticleListController = (NYTArticleListController*)[(UINavigationController*)self.window.rootViewController topViewController];
+            NYTArticleListController *nytArticleListController = (NYTArticleListController*)[self.viewController topViewController];
+            //Once we get our array of articles we pass it to NYTArticleListProvider to be used in the tableview.
             NYTArticleListProvider *tempProvide = [[NYTArticleListProvider alloc] initWithArticles:weakParser.articlesList];
             
             nytArticleListController.articleListProvider = tempProvide;

@@ -40,6 +40,7 @@
    
     NSError *error;
    
+    //Using NSPropertyListSerialization in order to parse the plist file.
     NSPropertyListFormat plistFormat;
     NSArray *temp = [NSPropertyListSerialization propertyListWithData:_dataToParse options:NSPropertyListImmutable format:&plistFormat error:&error];
     

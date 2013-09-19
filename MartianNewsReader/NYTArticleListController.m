@@ -26,7 +26,11 @@
 - (id)initWithStyle:(UITableViewStyle)style {
     self = [super initWithStyle:style];
     if (self) {
-        self.articleListProvider = [[NYTArticleListProvider alloc] init];
+        //self.articleListProvider = [[NYTArticleListProvider alloc] init];
+        //considering we don't wait for articles to be downloaded in order to create the tableview(asynchronous),
+        //allocating a nil articleListProvider here is redundant. Still seeing it implemented initially
+        //makes me feel little anxious and also makes me believe I am overseeing something important here.
+        //Happy to discuss more.
     }
     return self;
 }
@@ -34,7 +38,7 @@
 
 - (void) viewDidLoad
 {
-    //add segmented control programmatically
+    //add segmented control programmatically and attach it to navbar.
     NSArray *itemArray = [NSArray arrayWithObjects: @"English", @"Martian", nil];
     self.segmentedControl = [[UISegmentedControl alloc] initWithItems:itemArray];
     self.segmentedControl.frame = CGRectMake(70, 10, 180, 25);
@@ -43,7 +47,7 @@
     //set nsdefaults for persistance
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
-    if(!defaults) {
+    if(!defaults) { //first time, set it to english
         self.segmentedControl.selectedSegmentIndex = 0;
         [defaults setInteger:0 forKey:@"language"]; //0 english 1 martian
     } else {
@@ -64,7 +68,8 @@
 }
 
 -(void) segmentedControlIndexChanged {
-    
+        //this selector is called whenever we choose any segment control, even when we are inside articleViewController.
+        //so I post a notification below for articleViewController to pick up the change when it's in the stack.
     
     switch (self.segmentedControl.selectedSegmentIndex) {
         case 0:
@@ -82,7 +87,9 @@
     }
     
     //post a notification ->
-    //we choose notifications because we don't care who the receiver is. we broadcast and don't worry about the rest.
+    //I could have created a protocol and conform articleViewController to this protocol as well, but I wanted to use a
+    //NSNotification here because we don't care who the receiver is. we broadcast and don't worry about the rest.
+    
     
     NSString *notificationName = @"NYTSegmentedControlNotification";
     NSDictionary *dictionary = [NSDictionary dictionaryWithObject:[NSNumber numberWithInt:self.segmentedControl.selectedSegmentIndex] forKey:@"index"];
@@ -111,13 +118,14 @@
     
     static NSString *CellIdentifier = @"LazyTableCell";
     NYTLazyTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
+    // I prefer to have full control over cells to customize them in IB, thus custom view cell class. 
     if (!cell) {
         cell = [[NYTLazyTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
     NYTArticle  *article = [self.articleListProvider articleAtIndex:[indexPath row]];
     
+    //since it's not a requirement to persist text, I prefer it to apply translation category to change the text on the fly and not save it anywhere.
     (!self.segmentedControl.selectedSegmentIndex) ? [cell.titleLabel setText:article.title] : [cell.titleLabel setText:[article.title convertToMartian:article.title]];
     
     if(!article.articleImage)
