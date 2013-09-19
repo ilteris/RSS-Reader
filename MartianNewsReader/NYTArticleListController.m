@@ -12,7 +12,7 @@
 #import "NYTArticle.h"
 #import "NYTImageDownloader.h"
 #import "NYTLazyTableViewCell.h"
-
+#import "NSString+Translation.h"
 
 @interface NYTArticleListController ()
 
@@ -26,7 +26,7 @@
 - (id)initWithStyle:(UITableViewStyle)style {
     self = [super initWithStyle:style];
     if (self) {
-       self.articleListProvider = [[NYTArticleListProvider alloc] init];
+        self.articleListProvider = [[NYTArticleListProvider alloc] init];
     }
     return self;
 }
@@ -42,17 +42,18 @@
     
     //set nsdefaults for persistance
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-
+    
     if(!defaults) {
+        NSLog(@"ere");
         self.segmentedControl.selectedSegmentIndex = 0;
         [defaults setInteger:0 forKey:@"language"]; //0 english 1 martian
     } else {
         self.segmentedControl.selectedSegmentIndex = [defaults integerForKey:@"language"];
     }
     self.navigationController.toolbarHidden = NO;
-
+    
     [self.segmentedControl addTarget:self action:@selector(segmentedControlIndexChanged) forControlEvents:UIControlEventValueChanged];
-
+    
     [self.navigationController.toolbar addSubview:self.segmentedControl];
     
     [self.navigationController.navigationBar.topItem setTitle:@"Martian Times"];
@@ -65,17 +66,21 @@
 
 -(void) segmentedControlIndexChanged {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-
+    
+    NSString *notificationName = @"NYTSegmentedControlNotification";
+    NSDictionary *dictionary = [NSDictionary dictionaryWithObject:[NSNumber numberWithInt:self.segmentedControl.selectedSegmentIndex] forKey:@"index"];
+    [[NSNotificationCenter defaultCenter] postNotificationName:notificationName object:nil userInfo:dictionary];
+    
     switch (self.segmentedControl.selectedSegmentIndex) {
         case 0:
             NSLog(@"english in the articlelist");
             [defaults setInteger:0 forKey:@"language"]; //0 english 1 martian
-
+            
             break;
         case 1:
             NSLog(@"martin in the articlelist");
             [defaults setInteger:1 forKey:@"language"]; //0 english 1 martian
-
+            
             break;
             
         default:
@@ -83,8 +88,6 @@
     }
     
 }
-
-
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
@@ -110,8 +113,9 @@
     }
     
     NYTArticle  *article = [self.articleListProvider articleAtIndex:[indexPath row]];
-
-   cell.titleLabel.text = article.title;
+    
+    NSLog(@"self.segmentedControl.selectedSegmentIndex is %i", self.segmentedControl.selectedSegmentIndex);
+    (!self.segmentedControl.selectedSegmentIndex) ? [cell.titleLabel setText:article.title] : [cell.titleLabel setText:article.titleMartian];
     
     if(!article.articleImage)
     {
@@ -119,7 +123,7 @@
     }
     else
     {
-       cell.cellImageView.image = article.articleImage;
+        cell.cellImageView.image = article.articleImage;
     }
     return cell;
 }
@@ -129,7 +133,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NYTArticleViewController *articleViewController = [[NYTArticleViewController alloc] initWithArticle:
-            [self.articleListProvider articleAtIndex:[indexPath row]]];
+                                                       [self.articleListProvider articleAtIndex:[indexPath row]]];
     [self.navigationController pushViewController:articleViewController animated:YES];
 }
 

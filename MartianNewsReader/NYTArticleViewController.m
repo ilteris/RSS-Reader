@@ -9,6 +9,7 @@
 #import "NYTArticleViewController.h"
 #import "NYTArticle.h"
 #import <Foundation/NSRegularExpression.h>
+#import "NSString+Translation.h"
 
 @interface NYTArticleViewController ()
 
@@ -16,7 +17,6 @@
 @property (weak, nonatomic) IBOutlet UITextView *body;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UILabel *titleText;
-@property (nonatomic, strong) UISegmentedControl *segmentedControl;
 
 @end
 
@@ -43,39 +43,41 @@
     self.titleText.text = self.article.title;
     self.imageView.image = self.article.articleImage;
     
-    NSArray *itemArray = [NSArray arrayWithObjects: @"English", @"Martian", nil];
-    self.segmentedControl = [[UISegmentedControl alloc] initWithItems:itemArray];
-    self.segmentedControl.frame = CGRectMake(70, 5, 180, 30);
-    self.segmentedControl.segmentedControlStyle = UISegmentedControlStylePlain;
-    
-    
-    //[self.navigationController.navigationBar addSubview:self.segmentedControl];
-    
+    //initial load, get the value from the nsdefaults and apply the language
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];    
     
     if(![defaults integerForKey:@"language"]) {
         [self convertToEnglish];
     } else {
-        self.body.text =  [self convertToMartian:self.article.body];
-        self.titleText.text = [self convertToMartian:self.article.title];
+        self.body.text =  [self.article.body convertToMartian:self.article.body];
+        self.titleText.text = [self.article.body convertToMartian:self.article.title];
     }
+    
+    //register for notifications for the segmentedcontrol changes coming from parentviewcontroller
+    NSString *notificationName = @"NYTSegmentedControlNotification";
+    [[NSNotificationCenter defaultCenter]
+     addObserver:self
+     selector:@selector(segmentedControlIndexChanged:)
+     name:notificationName
+     object:nil];
+    
 }
 
 
--(void) segmentedControlIndexChanged {
-    
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    switch (self.segmentedControl.selectedSegmentIndex) {
+- (void)segmentedControlIndexChanged:(NSNotification *)notification
+{
+    NSDictionary *dictionary = [notification userInfo];
+    NSInteger index = [[dictionary valueForKey:@"index"] intValue];
+    //index is coming from segmentedcontrol
+    switch (index) {
         case 0:
             NSLog(@"english");
-            [defaults setInteger:0 forKey:@"language"]; //0 english 1 martian
             [self convertToEnglish];
             break;
         case 1:
             NSLog(@"martian");
-            [defaults setInteger:1 forKey:@"language"]; //0 english 1 martian
-            self.body.text =  [self convertToMartian:self.article.body];
-            self.titleText.text = [self convertToMartian:self.article.title];
+            self.body.text =  [self.article.body convertToMartian:self.article.body];
+            self.titleText.text = [self.article.body convertToMartian:self.article.title];
             
             break;
             
@@ -83,12 +85,8 @@
             break;
     }
     
+    
 }
-
-
-
-
-
 
 - (void)convertToEnglish
 {
@@ -98,45 +96,11 @@
 }
 
 
-- (NSString *)convertToMartian:(NSString *)aString
-{
 
-    NSString *currentString = aString;
-    
-    // Regular expression to find all words greater than 3 characters
-    NSRegularExpression *regex;
-    regex = [NSRegularExpression regularExpressionWithPattern:@"([\\w[’']]{4,})"
-                                                      options:0
-                                                        error:NULL];
-    
-    NSMutableString *modifiedString = [currentString mutableCopy];
-    __block int offset = 0;
-    [regex enumerateMatchesInString:currentString options:0 range:NSMakeRange(0, [currentString length]) usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop) {
-        NSRange range = [result rangeAtIndex:0];
-       // NSLog(@"range is %@", NSStringFromRange(range));
-        // Adjust location for modifiedString:
-        range.location += offset;
-        // Get old word:
-        NSString *oldWord = [modifiedString substringWithRange:range];
-        NSLog(@"%@", oldWord);
-        //check if word's first letter is capitalized
-        BOOL isUppercase = [[NSCharacterSet uppercaseLetterCharacterSet] characterIsMember:[oldWord characterAtIndex:0]];
-        NSString *newWord;
-       //  should be translated to the word "boinga" or "Boinga"
-        if (isUppercase == YES) {
-            newWord = [NSString stringWithFormat:@"Boinga"];
-        }
-        else
-        {
-            newWord = [NSString stringWithFormat:@"boinga"];
-        }
-        // Replace new word in modifiedString:
-        [modifiedString replaceCharactersInRange:range withString:newWord];
-        // Update offset:
-        offset += [newWord length] - [oldWord length];
-    }
-     ];
-    
-    return modifiedString;
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
+
+
 @end
