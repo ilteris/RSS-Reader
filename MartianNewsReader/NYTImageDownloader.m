@@ -67,7 +67,7 @@
 		UIGraphicsBeginImageContextWithOptions(itemSize, NO, 0.0f);
 		CGRect imageRect = CGRectMake(0.0, 0.0, itemSize.width, itemSize.height);
 		[image drawInRect:imageRect];
-		self.article.articleImage = UIGraphicsGetImageFromCurrentImageContext();
+		self.article.articleImage = image;//UIGraphicsGetImageFromCurrentImageContext();
 		UIGraphicsEndImageContext();
     }
     else

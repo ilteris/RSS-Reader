@@ -10,10 +10,13 @@
 #import "NYTArticleListProvider.h"
 #import "NYTArticleViewController.h"
 #import "NYTArticle.h"
+#import "NYTImageDownloader.h"
+#import "NYTLazyTableViewCell.h"
 
 
 @interface NYTArticleListController ()
 
+@property (nonatomic, strong) NSMutableDictionary *imageDownloadsInProgress;
 
 @end
 
@@ -27,6 +30,16 @@
     return self;
 }
 
+
+- (void) viewDidLoad
+{
+    [self.tableView registerNib:[UINib nibWithNibName:@"LazyTableCell"
+                                               bundle:[NSBundle mainBundle]]
+         forCellReuseIdentifier:@"LazyTableCell"];
+    
+    [self.navigationController.navigationBar.topItem setTitle:@"Martian Times"];
+    
+}
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
@@ -42,21 +55,29 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
+    static NSString *CellIdentifier = @"LazyTableCell";
+    NYTLazyTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[NYTLazyTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
     NYTArticle  *article = [self.articleListProvider articleAtIndex:[indexPath row]];
 
-   
+   cell.titleLabel.text = article.title;
     
-    cell.textLabel.text = [[self.articleListProvider articleAtIndex:[indexPath row]] valueForKey:@"title"];//article.title;
-   // cell.detailTextLabel.text = appRecord.artist;
+    if(!article.articleImage)
+    {
+        [self startIconDownload:article forIndexPath:indexPath];
+
+    }
+    else
+    {
+       // cell.imageView.image = article.articleImage;
+    }
     
- //   [NSException raise:@"NYTNotYetImplementedException" format:@""];
+    
     
     return cell;
 }
@@ -69,6 +90,36 @@
             [self.articleListProvider articleAtIndex:[indexPath row]]];
     [self.navigationController pushViewController:articleViewController animated:YES];
 }
+
+
+
+#pragma mark - Table cell image support
+
+- (void)startIconDownload:(NYTArticle *)article forIndexPath:(NSIndexPath *)indexPath
+{
+    NYTImageDownloader *iconDownloader = [self.imageDownloadsInProgress objectForKey:indexPath];
+    if (iconDownloader == nil)
+    {
+        iconDownloader = [[NYTImageDownloader alloc] init];
+        iconDownloader.article = article;
+        [iconDownloader setCompletionHandler:^{
+            
+            NYTLazyTableViewCell *cell = (NYTLazyTableViewCell *)[self.tableView cellForRowAtIndexPath:indexPath];
+            
+            // Display the newly loaded image
+            cell.cellImageView.image = article.articleImage;
+            
+            // Remove the IconDownloader from the in progress list.
+            // This will result in it being deallocated.
+            [self.imageDownloadsInProgress removeObjectForKey:indexPath];
+            
+        }];
+        [self.imageDownloadsInProgress setObject:iconDownloader forKey:indexPath];
+        [iconDownloader startDownload];
+    }
+}
+
+
 
 
 @end

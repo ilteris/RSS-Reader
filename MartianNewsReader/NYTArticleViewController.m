@@ -14,7 +14,7 @@
 
 @property(nonatomic, strong) NYTArticle *article;
 @property (weak, nonatomic) IBOutlet UITextView *body;
-@property (weak, nonatomic) IBOutlet UIImageView *image;
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UILabel *titleText;
 
 @end
@@ -39,5 +39,6 @@
    // self.title.text = self.article.title;
     self.body.text = self.article.body;
     self.titleText.text = self.article.title;
+    self.imageView.image = self.article.articleImage;
 }
 @end
