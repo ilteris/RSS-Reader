@@ -44,13 +44,10 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
     if(!defaults) {
-       // self.segmentedControl.selectedSegmentIndex = 0;
-       // [defaults setInteger:0 forKey:@"language"]; //0 english 1 martian
+        self.segmentedControl.selectedSegmentIndex = 0;
+        [defaults setInteger:0 forKey:@"language"]; //0 english 1 martian
     } else {
-        NSLog(@"here is self.segmentedControl.selectedSegmentIndex %i", self.segmentedControl.selectedSegmentIndex);
         self.segmentedControl.selectedSegmentIndex = [defaults integerForKey:@"language"];
-        NSLog(@"here is self.segmentedControl.selectedSegmentIndex %i", self.segmentedControl.selectedSegmentIndex);
-
     }
     self.navigationController.toolbarHidden = NO;
     
@@ -71,12 +68,10 @@
     
     switch (self.segmentedControl.selectedSegmentIndex) {
         case 0:
-            NSLog(@"english self.segmentedControl.selectedSegmentIndex is %i", self.segmentedControl.selectedSegmentIndex);
             [[NSUserDefaults standardUserDefaults] setInteger:0 forKey:@"language"]; //0 english 1 martian
             [[NSUserDefaults standardUserDefaults] synchronize];
             break;
         case 1:
-            NSLog(@"martin self.segmentedControl.selectedSegmentIndex is %i", self.segmentedControl.selectedSegmentIndex);
             [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"language"]; //0 english 1 martian
             [[NSUserDefaults standardUserDefaults] synchronize];
 
@@ -86,13 +81,14 @@
             break;
     }
     
-    //post notification we choose notifications because we don't care who the receiver is. we broadcast and don't worry about the rest.
+    //post a notification ->
+    //we choose notifications because we don't care who the receiver is. we broadcast and don't worry about the rest.
     
     NSString *notificationName = @"NYTSegmentedControlNotification";
     NSDictionary *dictionary = [NSDictionary dictionaryWithObject:[NSNumber numberWithInt:self.segmentedControl.selectedSegmentIndex] forKey:@"index"];
     [[NSNotificationCenter defaultCenter] postNotificationName:notificationName object:nil userInfo:dictionary];
   
-    
+    //reload the tableview each time user changes the segmentedcontrol.
     [self.tableView reloadData];
     
 }

@@ -20,11 +20,29 @@
 
 @end
 
-@implementation NYTArticleViewController
 
+#define HEIGHT_IPHONE_5 568
+#define IS_IPHONE   ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone)
+#define IS_IPHONE_5 ([[UIScreen mainScreen] bounds ].size.height == HEIGHT_IPHONE_5 )
+
+@implementation NYTArticleViewController
 - (NYTArticleViewController *)initWithArticle:(NYTArticle *)anArticle {
-    self = [super initWithNibName:@"NYTArticleViewController" bundle:nil];
-    //change of code so I can use nib file
+    if(IS_IPHONE_5)
+    {
+        NSLog(@"iphone5");
+        self=[super initWithNibName:@"NYTArticleViewController_ip5" bundle:nil];
+    }
+    else
+    {
+    NSLog(@"iphone4");
+        self=[super initWithNibName:@"NYTArticleViewController_ip4" bundle:nil];
+    }
+    //I changed the constructor to initWithNibName. My reasoning: I wanted to keep the
+    //layout code outside of my classes. I prefer IB to programmatically creating layouts
+    // since I find it faster.
+    
+    //I prefer to use separate nibs for separate iphones since I don't trust autolayout in IB yet and it's also cleaner in my humble opinion.
+    
     if (self) {
         self.article = anArticle;
 
@@ -38,7 +56,6 @@
 
 - (void)viewDidLoad
 {
-   // self.title.text = self.article.title;
     self.body.text = self.article.body;
     self.titleText.text = self.article.title;
     self.imageView.image = self.article.articleImage;
@@ -82,15 +99,12 @@
         default:
             break;
     }
-    
-    
 }
 
 - (void)convertToEnglish
 {
     self.body.text = self.article.body;
     self.titleText.text = self.article.title;
-
 }
 
 
