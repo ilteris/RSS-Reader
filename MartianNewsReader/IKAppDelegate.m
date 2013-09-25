@@ -1,25 +1,23 @@
 //
-//  NYTAppDelegate.m
+//  IKAppDelegate.m
 //  MartianNewsReader
 //
 
-//  Copyright (c) 2012 The New York Times Company. All rights reserved.
-//
 
-#import "NYTAppDelegate.h"
+#import "IKAppDelegate.h"
 
-#import "NYTArticleListController.h"
-#import "NYTParser.h"
-#import "NYTArticleListProvider.h"
+#import "IKArticleListController.h"
+#import "IKParser.h"
+#import "IKArticleListProvider.h"
 
 // This framework was imported so we could use the kCFURLErrorNotConnectedToInternet error code.
 #import <CFNetwork/CFNetwork.h>
 
 
-static NSString *const NYTArticlesFeed =
+static NSString *const IKArticlesFeed =
 @"http://mobile.public.ec2.nytimes.com.s3-website-us-east-1.amazonaws.com/candidates/content/v1/articles.plist";
 
-@interface NYTAppDelegate ()
+@interface IKAppDelegate ()
 // the queue to run our "ParseOperation"
 @property (nonatomic, strong) NSOperationQueue *queue;
 
@@ -28,7 +26,7 @@ static NSString *const NYTArticlesFeed =
 @end
 
 
-@implementation NYTAppDelegate
+@implementation IKAppDelegate
 
 #pragma mark -
 
@@ -37,12 +35,12 @@ static NSString *const NYTArticlesFeed =
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
-    self.viewController = [[UINavigationController alloc] initWithRootViewController:[[NYTArticleListController alloc] initWithStyle:UITableViewStylePlain]];
+    self.viewController = [[UINavigationController alloc] initWithRootViewController:[[IKArticleListController alloc] initWithStyle:UITableViewStylePlain]];
     self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
     
     
-    NSURLRequest *urlRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:NYTArticlesFeed]];
+    NSURLRequest *urlRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:IKArticlesFeed]];
     self.articlesListFeedConnection = [[NSURLConnection alloc] initWithRequest:urlRequest delegate:self];
     
     // Test the validity of the connection object.
@@ -62,7 +60,7 @@ static NSString *const NYTArticlesFeed =
 - (void)handleError:(NSError *)error
 {
     NSString *errorMessage = [error localizedDescription];
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Cannot Show NYT Articles"
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Cannot Show IK Articles"
 														message:errorMessage
 													   delegate:nil
 											  cancelButtonTitle:@"OK"
@@ -130,7 +128,7 @@ static NSString *const NYTArticlesFeed =
     
     // create an ParseOperation (NSOperation subclass) to parse the RSS feed data
     // so that the UI is not blocked
-    NYTParser *parser = [[NYTParser alloc] initWithData:self.articlesListData];
+    IKParser *parser = [[IKParser alloc] initWithData:self.articlesListData];
     
     parser.errorHandler = ^(NSError *parseError) {
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -140,14 +138,14 @@ static NSString *const NYTArticlesFeed =
     
     // Referencing parser from within its completionBlock would create a retain
     // cycle.
-    __weak NYTParser *weakParser = parser;
+    __weak IKParser *weakParser = parser;
     
     parser.completionBlock = ^(void) {
         if (weakParser.articlesList) {
             
-            NYTArticleListController *nytArticleListController = (NYTArticleListController*)[self.viewController topViewController];
-            //Once we get our array of articles we pass it to NYTArticleListProvider to be used in the tableview.
-            NYTArticleListProvider *tempProvide = [[NYTArticleListProvider alloc] initWithArticles:weakParser.articlesList];
+            IKArticleListController *nytArticleListController = (IKArticleListController*)[self.viewController topViewController];
+            //Once we get our array of articles we pass it to IKArticleListProvider to be used in the tableview.
+            IKArticleListProvider *tempProvide = [[IKArticleListProvider alloc] initWithArticles:weakParser.articlesList];
             
             nytArticleListController.articleListProvider = tempProvide;
             

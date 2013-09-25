@@ -3,7 +3,6 @@
 //  MartianNewsReader
 //
 //  Created by ilteris on 9/19/13.
-//  Copyright (c) 2013 The New York Times Company. All rights reserved.
 //  Category for converting String to Martian language.
 
 #import "NSString+Translation.h"

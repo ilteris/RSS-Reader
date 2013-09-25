@@ -1,27 +1,27 @@
 //
-//  NYTParser.m
+//  IKParser.m
 //  MartianNewsReader
 //
 //  Created by ilteris on 9/18/13.
-//  Copyright (c) 2013 The New York Times Company. All rights reserved.
+//  
 //
 
-#import "NYTParser.h"
-#import "NYTArticle.h"
+#import "IKParser.h"
+#import "IKArticle.h"
 #import "NSString+Translation.h"
 
-@interface NYTParser ()
+@interface IKParser ()
 // Redeclare articlesList so we can modify it.
 @property (nonatomic, strong) NSArray *articlesList;
 @property (nonatomic, strong) NSMutableArray *workingArray;
 
 @property (nonatomic, strong) NSData *dataToParse;
-@property (nonatomic, strong) NYTArticle *article;
+@property (nonatomic, strong) IKArticle *article;
 @end
 
 
 
-@implementation NYTParser
+@implementation IKParser
 
 
 - (id)initWithData:(NSData *)data
@@ -48,7 +48,7 @@
     
 
     for (NSDictionary *articleDict in temp) {
-        NYTArticle *article = [[NYTArticle alloc] init];
+        IKArticle *article = [[IKArticle alloc] init];
         article.title = [articleDict valueForKey:@"title"];
         article.body = [articleDict valueForKey:@"body"];
         article.images = [NSArray arrayWithArray:[articleDict valueForKey:@"images"]];

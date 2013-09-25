@@ -1,23 +1,23 @@
 //
-//  NYTImageDownloader.m
+//  IKImageDownloader.m
 //  MartianNewsReader
 //
 //  Created by ilteris on 9/18/13.
-//  Copyright (c) 2013 The New York Times Company. All rights reserved.
+//  
 //
 
-#import "NYTImageDownloader.h"
-#import "NYTArticle.h"
+#import "IKImageDownloader.h"
+#import "IKArticle.h"
 
 
-@interface NYTImageDownloader ()
+@interface IKImageDownloader ()
 @property (nonatomic, strong) NSMutableData *activeDownload;
 @property (nonatomic, strong) NSURLConnection *imageConnection;
 @end
 
 
 
-@implementation NYTImageDownloader
+@implementation IKImageDownloader
 #pragma mark
 
 - (void)startDownload

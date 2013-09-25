@@ -1,19 +1,19 @@
 //
-//  NYTArticleViewController.m
+//  IKArticleViewController.m
 //  MartianNewsReader
 //
 
 //  Copyright (c) 2012 The New York Times Company. All rights reserved.
 //
 
-#import "NYTArticleViewController.h"
-#import "NYTArticle.h"
+#import "IKArticleViewController.h"
+#import "IKArticle.h"
 #import <Foundation/NSRegularExpression.h>
 #import "NSString+Translation.h"
 
-@interface NYTArticleViewController ()
+@interface IKArticleViewController ()
 
-@property(nonatomic, strong) NYTArticle *article;
+@property(nonatomic, strong) IKArticle *article;
 @property (weak, nonatomic) IBOutlet UITextView *body;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UILabel *titleText;
@@ -25,17 +25,17 @@
 #define IS_IPHONE   ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone)
 #define IS_IPHONE_5 ([[UIScreen mainScreen] bounds ].size.height == HEIGHT_IPHONE_5 )
 
-@implementation NYTArticleViewController
-- (NYTArticleViewController *)initWithArticle:(NYTArticle *)anArticle {
+@implementation IKArticleViewController
+- (IKArticleViewController *)initWithArticle:(IKArticle *)anArticle {
     if(IS_IPHONE_5)
     {
         NSLog(@"iphone5");
-        self=[super initWithNibName:@"NYTArticleViewController_ip5" bundle:nil];
+        self=[super initWithNibName:@"IKArticleViewController_ip5" bundle:nil];
     }
     else
     {
     NSLog(@"iphone4");
-        self=[super initWithNibName:@"NYTArticleViewController_ip4" bundle:nil];
+        self=[super initWithNibName:@"IKArticleViewController_ip4" bundle:nil];
     }
     //I changed the constructor to initWithNibName. My reasoning: I wanted to keep the
     //layout code outside of my classes. I prefer IB to programmatically creating layouts
@@ -73,7 +73,7 @@
     }
     
     //register for notifications for the segmentedcontrol changes coming from parentviewcontroller
-    NSString *notificationName = @"NYTSegmentedControlNotification";
+    NSString *notificationName = @"IKSegmentedControlNotification";
     [[NSNotificationCenter defaultCenter]
      addObserver:self
      selector:@selector(segmentedControlIndexChanged:)

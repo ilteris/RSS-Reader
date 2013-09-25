@@ -1,32 +1,32 @@
 //
-//  NYTArticleListController.m
+//  IKArticleListController.m
 //  MartianNewsReader
 //
 
 //  Copyright (c) 2012 The New York Times Company. All rights reserved.
 //
 
-#import "NYTArticleListController.h"
-#import "NYTArticleListProvider.h"
-#import "NYTArticleViewController.h"
-#import "NYTArticle.h"
-#import "NYTImageDownloader.h"
-#import "NYTLazyTableViewCell.h"
+#import "IKArticleListController.h"
+#import "IKArticleListProvider.h"
+#import "IKArticleViewController.h"
+#import "IKArticle.h"
+#import "IKImageDownloader.h"
+#import "IKLazyTableViewCell.h"
 #import "NSString+Translation.h"
 
-@interface NYTArticleListController ()
+@interface IKArticleListController ()
 
 @property (nonatomic, strong) NSMutableDictionary *imageDownloadsInProgress;
 @property (nonatomic, strong) UISegmentedControl *segmentedControl;
 
 @end
 
-@implementation NYTArticleListController
+@implementation IKArticleListController
 
 - (id)initWithStyle:(UITableViewStyle)style {
     self = [super initWithStyle:style];
     if (self) {
-        //self.articleListProvider = [[NYTArticleListProvider alloc] init];
+        //self.articleListProvider = [[IKArticleListProvider alloc] init];
         //considering we don't wait for articles to be downloaded in order to create the tableview(asynchronous),
         //allocating a nil articleListProvider here is redundant. Still seeing it implemented initially
         //makes me feel little anxious and also makes me believe I am overseeing something important here.
@@ -91,7 +91,7 @@
     //NSNotification here because we don't care who the receiver is. we broadcast and don't worry about the rest.
     
     
-    NSString *notificationName = @"NYTSegmentedControlNotification";
+    NSString *notificationName = @"IKSegmentedControlNotification";
     NSDictionary *dictionary = [NSDictionary dictionaryWithObject:[NSNumber numberWithInt:self.segmentedControl.selectedSegmentIndex] forKey:@"index"];
     [[NSNotificationCenter defaultCenter] postNotificationName:notificationName object:nil userInfo:dictionary];
   
@@ -117,13 +117,13 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     static NSString *CellIdentifier = @"LazyTableCell";
-    NYTLazyTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    IKLazyTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     // I prefer to have full control over cells to customize them in IB, thus custom view cell class. 
     if (!cell) {
-        cell = [[NYTLazyTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[IKLazyTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-    NYTArticle  *article = [self.articleListProvider articleAtIndex:[indexPath row]];
+    IKArticle  *article = [self.articleListProvider articleAtIndex:[indexPath row]];
     
     //since it's not a requirement to persist text, I prefer it to apply translation category to change the text on the fly and not save it anywhere.
     (!self.segmentedControl.selectedSegmentIndex) ? [cell.titleLabel setText:article.title] : [cell.titleLabel setText:[article.title convertToMartian:article.title]];
@@ -143,7 +143,7 @@
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NYTArticleViewController *articleViewController = [[NYTArticleViewController alloc] initWithArticle:
+    IKArticleViewController *articleViewController = [[IKArticleViewController alloc] initWithArticle:
                                                        [self.articleListProvider articleAtIndex:[indexPath row]]];
     [self.navigationController pushViewController:articleViewController animated:YES];
 }
@@ -152,16 +152,16 @@
 
 #pragma mark - Table cell image support
 
-- (void)startImageDownload:(NYTArticle *)article forIndexPath:(NSIndexPath *)indexPath
+- (void)startImageDownload:(IKArticle *)article forIndexPath:(NSIndexPath *)indexPath
 {
-    NYTImageDownloader *imageDownloader = [self.imageDownloadsInProgress objectForKey:indexPath];
+    IKImageDownloader *imageDownloader = [self.imageDownloadsInProgress objectForKey:indexPath];
     if (imageDownloader == nil)
     {
-        imageDownloader = [[NYTImageDownloader alloc] init];
+        imageDownloader = [[IKImageDownloader alloc] init];
         imageDownloader.article = article;
         [imageDownloader setCompletionHandler:^{
             
-            NYTLazyTableViewCell *cell = (NYTLazyTableViewCell *)[self.tableView cellForRowAtIndexPath:indexPath];
+            IKLazyTableViewCell *cell = (IKLazyTableViewCell *)[self.tableView cellForRowAtIndexPath:indexPath];
             
             // Display the newly loaded image
             cell.cellImageView.image = article.articleImage;
